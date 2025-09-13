@@ -1,0 +1,11 @@
+[Unit]
+Description=Nginx container with resource limits
+After=network.target
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/podman run --memory=512m --cpus=1 -p 8080:80 nginx
+ExecStop=/usr/bin/podman stop -t 10 nginx
+
+[Install]
+WantedBy=multi-user.target
